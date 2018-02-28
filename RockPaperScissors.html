@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<script>
+ 	// Your JavaScript goes here!
+ 	var computerMove = "";
+ 	var winCount = 0;
+ 	var loseCount = 0;
+ 	function computerPlay() {
+ 		const randomNumer = Math.floor((Math.random()*3) + 1);
+ 		if (randomNumer === 1){
+ 			computerMove = 'rock';
+ 		}
+ 		else if (randomNumer === 2) {
+ 			computerMove = 'paper';
+ 		}
+ 		else {
+ 			computerMove = 'scissors';
+ 		}
+ 		return computerMove;
+ 	}
+
+ 	function playRound(playerSelection, computerSelection) {
+ 		if (playerSelection.toLowerCase() === "rock" && computerSelection === "rock"){
+ 			return "You chose rock. tie";
+ 		}
+ 		else if (playerSelection.toLowerCase() === "rock" && computerSelection === "paper"){
+ 			++loseCount;
+ 			return "You chose rock. You lose.";
+ 		}
+ 		else if (playerSelection.toLowerCase() === "rock" && computerSelection === "scissors"){
+ 			++winCount;
+ 			return "You chose rock. You win!";
+ 		}
+ 		else if (playerSelection.toLowerCase() === "paper" && computerSelection === "rock"){
+ 			++winCount;
+ 			return "You chose paper. You win!";
+ 		}
+ 		else if (playerSelection.toLowerCase() === "paper" && computerSelection === "paper"){
+ 			return "You chose paper. tie";
+ 		}
+ 		else if (playerSelection.toLowerCase() === "paper" && computerSelection === "scissors"){
+ 			++loseCount;
+ 			return "You chose paper. You lose.";
+ 		}
+ 		else if (playerSelection.toLowerCase() === "scissors" && computerSelection === "rock"){
+ 			++loseCount;
+ 			return "You chose scissors. You lose.";
+ 		}
+ 		else if (playerSelection.toLowerCase() === "scissors" && computerSelection === "paper"){
+ 			++winCount;
+ 			return "You chose scissors. You win!";
+ 		}
+ 		else {
+ 			return "You chose scissors. Tie."
+ 		}
+ 	}
+
+ 	function game() {
+ 		for (var i = 5; i > 0; i--) {
+ 			const playerSelection = prompt('Rock, Paper, or Scissors?');
+ 			const computerSelection = computerPlay();
+ 			console.log('Computer chose: ' + computerSelection);
+ 			var output = playRound(playerSelection, computerSelection);
+ 			console.log(output);
+ 		}
+ 		if (winCount > loseCount) {
+ 			console.log("You win the game!");
+ 		}
+ 		else if (loseCount > winCount) {
+ 			console.log("You lose the game");
+ 		}
+ 		else {
+ 			console.log("It's a tie game!");
+ 		}
+ 	}
+
+ 	game();
+
+ 	</script>
+ 	</body>
+ 	</html>
